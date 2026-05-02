@@ -91,7 +91,7 @@ function generate(d) {
   const kgPersi = Math.max(0, pesoInN-pesoN).toFixed(1);
   const kgMancanti = Math.max(0, pesoN-pesoObN).toFixed(1);
   const progresso = pesoInN>pesoObN ? Math.min(100,((pesoInN-pesoN)/(pesoInN-pesoObN))*100).toFixed(1) : '0';
-  const calorieGiorni = d.calorieGiorni||[1950,1800,2000,1900,2100,1850,1950];
+ const calorieGiorni = Array.isArray(d.calorieGiorni) ? d.calorieGiorni : typeof d.calorieGiorni === 'string' ? JSON.parse(d.calorieGiorni) : [1950,1800,2000,1900,2100,1850,1950];
   const calMedia = Math.round(calorieGiorni.reduce((a,b)=>a+b,0)/calorieGiorni.length);
   const aderenza = Math.round(calorieGiorni.filter(c=>Math.abs(c-2000)<250).length/7*100);
   const giorniPalestra = d.giorniPalestra||3;
